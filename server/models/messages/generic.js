@@ -16,7 +16,7 @@ class GenericMessage extends Message {
                     "template_type": "generic",
                     "elements": [{
                         "title": "Generic "+this.text,
-                        "subtitle": this.text,
+                        "subtitle": "Fabulous "+this.text,
                         "image_url": "http://loremflickr.com/320/240/"+this.text,
                         "buttons": [{
                             "type": "web_url",
@@ -29,7 +29,7 @@ class GenericMessage extends Message {
                         }]
                     },{
                         "title": "Second generic "+this.text,
-                        "subtitle": this.text,
+                        "subtitle": "Fabulous second "+this.text,
                         "image_url": "http://loremflickr.com/320/240/"+this.text,
                         "buttons": [{
                             "type": "web_url",
