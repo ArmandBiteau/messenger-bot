@@ -39,7 +39,7 @@ class ReceiptMessage extends Message {
                     "summary": {
                         "subtotal": 220,
                         "shipping_cost": 220,
-                        "total_tax": 0.20,
+                        "total_tax": 0.20*220,
                         "total_cost": 220*1.20
                     }
                 }
