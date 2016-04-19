@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
 			        message = new ButtonMessage(sender, text);
 			        break;
 				case text.includes('receipt'):
-					message = new receiptMessage(sender, text);
+					message = new ReceiptMessage(sender, text);
 					break;
 
 			    default:
