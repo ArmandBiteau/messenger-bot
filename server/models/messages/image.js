@@ -1,8 +1,4 @@
-import { PAGE_TOKEN } from '../../lib/config';
-
 import Message from './index.js';
-
-import request from 'request';
 
 class ImageMessage extends Message {
 
@@ -10,7 +6,7 @@ class ImageMessage extends Message {
 
         super(sender);
 
-        this.url = text.replace('image', '').replace(/\s/g, '');
+        this.url = text.toLowerCase().replace('image', '').replace(/\s/g, '');
 
         this.data = {
             "attachment": {

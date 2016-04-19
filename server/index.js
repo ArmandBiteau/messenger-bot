@@ -101,6 +101,7 @@ app.post('/webhook/', function (req, res) {
 
 			var sender = event.sender.id;
             var text = event.message.text;
+			var message;
 
             if (text === 'Generic') {
 
@@ -108,15 +109,15 @@ app.post('/webhook/', function (req, res) {
 
             } else if (text.includes('image')) {
 
-				let imgMess = new ImageMessage(sender, text);
-				imgMess.send();
+				message = new ImageMessage(sender, text);
 
 			} else {
 
-				let txtMess = new TextMessage(sender, "Echo " + text);
-				txtMess.send();
+				message = new TextMessage(sender, "Echo " + text);
 
 			}
+
+			message.send();
 
         }
 
