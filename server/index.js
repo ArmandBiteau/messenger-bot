@@ -97,12 +97,11 @@ app.post('/webhook/', function (req, res) {
     for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
         var event = req.body.entry[0].messaging[i];
+		var sender = event.sender.id;
 
         if (event.message && event.message.text) {
 
-			var sender = event.sender.id;
             var text = event.message.text.toLowerCase();
-
 			var message;
 
 			switch(true) {
@@ -119,6 +118,15 @@ app.post('/webhook/', function (req, res) {
 			}
 
 			message.send();
+
+        }
+
+		if (event.postback) {
+
+            let text = JSON.stringify(event.postback);
+
+			let newMessage = new ImageMessage(sender, text);
+			newMessage.send();
 
         }
 
