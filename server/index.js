@@ -11,6 +11,7 @@ import db from './db';
 
 import TextMessage from './models/messages/text';
 import ImageMessage from './models/messages/image';
+import GenericMessage from './models/messages/generic';
 
 var app = express();
 app.server = http.createServer(app);
@@ -100,12 +101,13 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
 
 			var sender = event.sender.id;
-            var text = event.message.text;
+            var text = event.message.text.toLowerCase();
+
 			var message;
 
-            if (text === 'Generic') {
+            if (text.includes('generic')) {
 
-                sendGenericMessage(sender);
+                message = new GenericMessage(sender, text);
 
             } else if (text.includes('image')) {
 
