@@ -19,6 +19,7 @@
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "resource-router-middleware": "^0.5.1"
+    "resource-router-middleware": "^0.5.1",
+    "request": "^2.71.0"
   }
 }
