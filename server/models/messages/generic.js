@@ -21,8 +21,8 @@ class GenericMessage extends Message {
                             "title": "Web link"
                         }, {
                             "type": "postback",
-                            "title": "Postback",
-                            "payload": "image dog",
+                            "title": "Image postback",
+                            "payload": "dog",
                         }],
                     }]
                 }

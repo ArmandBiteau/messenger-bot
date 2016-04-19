@@ -12,6 +12,7 @@ import db from './db';
 import TextMessage from './models/messages/text';
 import ImageMessage from './models/messages/image';
 import GenericMessage from './models/messages/generic';
+import ButtonMessage from './models/messages/button';
 
 var app = express();
 app.server = http.createServer(app);
@@ -110,6 +111,9 @@ app.post('/webhook/', function (req, res) {
 			        break;
 			    case text.includes('image'):
 			        message = new ImageMessage(sender, text);
+			        break;
+				case text.includes('button'):
+			        message = new ButtonMessage(sender, text);
 			        break;
 
 			    default:

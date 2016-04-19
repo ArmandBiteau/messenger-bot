@@ -16,5 +16,7 @@ PORT=8080 nodemon
 
 # Available messages
 
-###### Hello world
+###### Hello dog
 ###### Image dog
+###### Generic dog
+###### Button dog
