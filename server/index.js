@@ -1,6 +1,6 @@
 // curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAH5YDy9ozYBALgpeRXcGExCGZCYHnLG9gBdOlpBNCxqpl2jn8pkiCZAkm1qsB1jZA6AHkfywx7u4LLqddigfbCcf5hBHrf6lq6VEIiXL8mV1ka1nPxRsbAPHfXLBZCZCFpPSIdDc4xHFKZAf3FaIrhlqNRr1MPyOg5Jma309fRwZDZD"
 
-var PAGE_TOKEN = 'EAAH5YDy9ozYBALgpeRXcGExCGZCYHnLG9gBdOlpBNCxqpl2jn8pkiCZAkm1qsB1jZA6AHkfywx7u4LLqddigfbCcf5hBHrf6lq6VEIiXL8mV1ka1nPxRsbAPHfXLBZCZCFpPSIdDc4xHFKZAf3FaIrhlqNRr1MPyOg5Jma309fRwZDZD';
+import { PAGE_TOKEN } from './lib/config';
 
 import http from 'http';
 import express from 'express';
@@ -10,6 +10,8 @@ import bodyParser from 'body-parser';
 import request from 'request';
 
 import db from './db';
+
+import Message from './models/messages';
 
 var app = express();
 app.server = http.createServer(app);
@@ -22,33 +24,6 @@ app.use(cors({
 app.use(bodyParser.json({
 	limit : '100kb'
 }));
-
-
-
-
-function sendTextMessage(sender, text) {
-
-	var messageData = {
-        text:text
-    };
-
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: PAGE_TOKEN},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-    });
-
-}
 
 
 function sendGenericMessage(sender) {
@@ -106,27 +81,20 @@ function sendGenericMessage(sender) {
 
 // index
 app.get('/', function (req, res) {
-
-	res.send('hello world i am a secret bot');
-
+	res.send('Messenger-bot');
 });
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-
 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-
         res.send(req.query['hub.challenge']);
-
     }
-
     res.send('Error, wrong token');
-
 });
 
 app.post('/webhook/', function (req, res) {
 
-	console.log("----- CALL -----");
+	console.log("----- POST CALL -----");
 
     var messaging_events = req.body.entry[0].messaging;
 
@@ -144,7 +112,9 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender);
             }
 
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200));
+			let mess = new Message(sender, "Text received : " + text.substring(0, 200));
+			mess.send();
+
         }
 
     }
