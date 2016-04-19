@@ -1,4 +1,4 @@
-import { PAGE_TOKEN } from '../lib/config';
+import { PAGE_TOKEN } from '../../lib/config';
 
 import request from 'request';
 
