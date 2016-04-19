@@ -4,13 +4,11 @@ import request from 'request';
 
 class Message {
 
-    constructor(sender, text) {
+    constructor(sender) {
 
         this.sender = sender;
 
-        this.data = {
-            text:text
-        };
+        this.data = {};
 
     }
 

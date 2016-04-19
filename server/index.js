@@ -11,7 +11,7 @@ import request from 'request';
 
 import db from './db';
 
-import Message from './models/messages';
+import TextMessage from './models/messages/text';
 
 var app = express();
 app.server = http.createServer(app);
@@ -112,7 +112,7 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender);
             }
 
-			let mess = new Message(sender, "Text received : " + text.substring(0, 200));
+			let mess = new TextMessage(sender, "echo " + text.substring(0, 200));
 			mess.send();
 
         }
