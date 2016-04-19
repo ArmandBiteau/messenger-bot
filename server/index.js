@@ -124,14 +124,14 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
 
-	console.log(req.body.entry[0]);
+	console.log("----- CALL -----");
 
     var messaging_events = req.body.entry[0].messaging;
 
     for (var i = 0; i < messaging_events.length; i++) {
 
         var event = req.body.entry[0].messaging[i];
-        sender = event.sender.id;
+        var sender = event.sender.id;
 
         if (event.message && event.message.text) {
 
