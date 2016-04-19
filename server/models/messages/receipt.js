@@ -18,7 +18,7 @@ class ReceiptMessage extends Message {
                     "order_number": "1234",
                     "currency": "GBP",
                     "payment_method": "Bank account - Visa 1234",
-                    "timestamp": "04/19/2016 @ 3:34pm (UTC)",
+                    "timestamp": "1461032760",
                     "order_url": "https://www.amazon.co.uk/Dogs-Food-Toys-Health/b?ie=UTF8&node=451110031",
                     "elements": [{
                         "title": "First receipt",
