@@ -127,9 +127,7 @@ app.post('/webhook/', function (req, res) {
 
 		if (event.postback) {
 
-            let text = JSON.stringify(event.postback);
-
-			console.log(text);
+            let text = JSON.stringify(event.postback).payload;
 
 			let newMessage = new ImageMessage(sender, text);
 			newMessage.send();
