@@ -6,12 +6,11 @@ import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-
 import request from 'request';
-
 import db from './db';
 
 import TextMessage from './models/messages/text';
+import ImageMessage from './models/messages/image';
 
 var app = express();
 app.server = http.createServer(app);
@@ -94,26 +93,30 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
 
-	console.log("----- POST CALL -----");
-
-    var messaging_events = req.body.entry[0].messaging;
-
-    for (var i = 0; i < messaging_events.length; i++) {
+    for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
         var event = req.body.entry[0].messaging[i];
-        var sender = event.sender.id;
 
         if (event.message && event.message.text) {
 
+			var sender = event.sender.id;
             var text = event.message.text;
 
             if (text === 'Generic') {
 
                 sendGenericMessage(sender);
-            }
 
-			let mess = new TextMessage(sender, "echo " + text.substring(0, 200));
-			mess.send();
+            } else if (text.includes('image')) {
+
+				let imgMess = new ImageMessage(sender, text);
+				imgMess.send();
+
+			} else {
+
+				let txtMess = new TextMessage(sender, "Echo " + text);
+				txtMess.send();
+
+			}
 
         }
 

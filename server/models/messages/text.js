@@ -4,7 +4,7 @@ import Message from './index.js';
 
 import request from 'request';
 
-class TextMessage extends Message{
+class TextMessage extends Message {
 
     constructor(sender, text) {
 
