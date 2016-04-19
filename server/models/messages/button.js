@@ -12,9 +12,9 @@ class ButtonMessage extends Message {
         this.data = {
             "attachment": {
                 "type": "template",
-                "text": this.dog,
                 "payload": {
                     "template_type": "button",
+                    "text": this.dog,
                     "buttons": [{
                         "type": "web_url",
                         "url": this.url,
