@@ -18,11 +18,11 @@ class GenericMessage extends Message {
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.messenger.com",
-                            "title": "web url"
+                            "title": "Web link"
                         }, {
                             "type": "postback",
                             "title": "Postback",
-                            "payload": "Payload for first element in a generic bubble",
+                            "payload": "image dog",
                         }],
                     }]
                 }
