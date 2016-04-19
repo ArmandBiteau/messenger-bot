@@ -1,5 +1,7 @@
 > Update your PAGE_TOKEN in /server/lib/config-sample.js and save it as config.js
 
+[Doug the dog bot](https://www.facebook.com/dougthedogbot/)
+
 # Available messages
 
 ###### Hello dog

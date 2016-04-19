@@ -77,7 +77,6 @@ app.post('/webhook/', function (req, res) {
 
             let text = event.postback.payload;
 
-
 			if (text === "buy present") {
 
 				let recMessage = new ReceiptMessage(sender, "Dog food");
