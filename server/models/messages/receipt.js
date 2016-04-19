@@ -6,7 +6,7 @@ class ReceiptMessage extends Message {
 
         super(sender);
 
-        this.text = text.toLowerCase().replace('receipt', '').replace(/\s/g, '');
+        this.text = text.toLowerCase().replace('receipt', '');
         this.url = "http://lmgtfy.com/?q=" + this.text;
 
         this.data = {
@@ -14,7 +14,7 @@ class ReceiptMessage extends Message {
                 "type": "template",
                 "payload": {
                     "template_type": "receipt",
-                    "recipient_name": "Receipt "+this.text,
+                    "recipient_name": "Receipt for "+this.text,
                     "order_number": "1234",
                     "currency": "GBP",
                     "payment_method": "Bank account - Visa 1234",

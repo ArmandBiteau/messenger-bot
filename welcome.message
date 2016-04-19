@@ -1,0 +1,36 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+  "setting_type":"call_to_actions",
+  "thread_state":"new_thread",
+  "call_to_actions":[
+    {
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+                "title":"Hi Dude, I am Doug the dog !",
+                "item_url":"https://www.facebook.com/Messenger-bot-1703387699878233/",
+                "image_url":"https://static.pexels.com/photos/7720/night-animal-dog-pet.jpg",
+                "subtitle":"Guess what, I am a smart dog.",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "title":"View my website",
+                    "url":"https://www.facebook.com/Messenger-bot-1703387699878233/"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"Start Chatting",
+                    "payload":"buy present"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAH5YDy9ozYBALgpeRXcGExCGZCYHnLG9gBdOlpBNCxqpl2jn8pkiCZAkm1qsB1jZA6AHkfywx7u4LLqddigfbCcf5hBHrf6lq6VEIiXL8mV1ka1nPxRsbAPHfXLBZCZCFpPSIdDc4xHFKZAf3FaIrhlqNRr1MPyOg5Jma309fRwZDZD"

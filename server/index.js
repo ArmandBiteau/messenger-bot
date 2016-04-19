@@ -77,9 +77,22 @@ app.post('/webhook/', function (req, res) {
 
             let text = event.postback.payload;
 
-			let newMessage = new ImageMessage(sender, text);
 
-			newMessage.send();
+			if (text === "buy present") {
+
+				let recMessage = new ReceiptMessage(sender, "Dog food");
+				let thanksMessage = new TextMessage(sender, "Thanks man !");
+
+				recMessage.send();
+				thanksMessage.send();
+
+			} else {
+
+				let newMessage = new ImageMessage(sender, text);
+				newMessage.send();
+
+			}
+
 
         }
 
