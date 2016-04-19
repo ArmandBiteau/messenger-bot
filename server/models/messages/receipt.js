@@ -15,7 +15,7 @@ class ReceiptMessage extends Message {
                 "payload": {
                     "template_type": "receipt",
                     "recipient_name": "Receipt for "+this.text,
-                    "order_number": "1234",
+                    "order_number": Math.floor(Math.random()*1000),
                     "currency": "GBP",
                     "payment_method": "Bank account - Visa 1234",
                     "timestamp": "1461032760",
