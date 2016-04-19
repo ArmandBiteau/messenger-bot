@@ -13,11 +13,11 @@ import TextMessage from './models/messages/text';
 import ImageMessage from './models/messages/image';
 import GenericMessage from './models/messages/generic';
 import ButtonMessage from './models/messages/button';
+import ReceiptMessage from './models/messages/receipt';
 
 var app = express();
 app.server = http.createServer(app);
 
-// 3rd party middleware
 app.use(cors({
 	exposedHeaders: ['Link']
 }));
@@ -26,66 +26,11 @@ app.use(bodyParser.json({
 	limit : '100kb'
 }));
 
-
-function sendGenericMessage(sender) {
-
-	var messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
-        }
-    };
-
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:PAGE_TOKEN},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-    });
-}
-
-
-
-// index
 app.get('/', function (req, res) {
 	res.send('Messenger-bot');
 });
 
-// for Facebook verification
+// Facebook verification only
 app.get('/webhook/', function (req, res) {
 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
         res.send(req.query['hub.challenge']);
@@ -115,6 +60,9 @@ app.post('/webhook/', function (req, res) {
 				case text.includes('button'):
 			        message = new ButtonMessage(sender, text);
 			        break;
+				case text.includes('receipt'):
+					message = new receiptMessage(sender, text);
+					break;
 
 			    default:
 			        message = new TextMessage(sender, "Echo " + text);
@@ -129,9 +77,8 @@ app.post('/webhook/', function (req, res) {
 
             let text = event.postback.payload;
 
-			console.log(text);
-
 			let newMessage = new ImageMessage(sender, text);
+
 			newMessage.send();
 
         }

@@ -6,23 +6,23 @@ class ButtonMessage extends Message {
 
         super(sender);
 
-        this.dog = text.toLowerCase().replace('button', '').replace(/\s/g, '');
-        this.url = "http://lmgtfy.com/?q=" + this.dog;
+        this.text = text.toLowerCase().replace('button', '').replace(/\s/g, '');
+        this.url = "http://lmgtfy.com/?q=" + this.text;
 
         this.data = {
             "attachment": {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": this.dog,
+                    "text": this.text,
                     "buttons": [{
                         "type": "web_url",
                         "url": this.url,
                         "title": "Let me google that for you"
                     }, {
                         "type": "postback",
-                        "title": "Image postback",
-                        "payload": "image "+this.dog,
+                        "title": "Send me a picture",
+                        "payload": "image "+this.text,
                     }]
                 }
             }

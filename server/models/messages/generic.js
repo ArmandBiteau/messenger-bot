@@ -6,8 +6,8 @@ class GenericMessage extends Message {
 
         super(sender);
 
-        this.dog = text.toLowerCase().replace('generic', '').replace(/\s/g, '');
-        this.url = "http://lmgtfy.com/?q=" + this.dog;
+        this.text = text.toLowerCase().replace('generic', '').replace(/\s/g, '');
+        this.url = "http://lmgtfy.com/?q=" + this.text;
 
         this.data = {
             "attachment": {
@@ -15,30 +15,30 @@ class GenericMessage extends Message {
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "Generic "+this.dog,
-                        "subtitle": this.dog,
-                        "image_url": "http://loremflickr.com/320/240/"+this.dog,
+                        "title": "Generic "+this.text,
+                        "subtitle": this.text,
+                        "image_url": "http://loremflickr.com/320/240/"+this.text,
                         "buttons": [{
                             "type": "web_url",
                             "url": this.url,
                             "title": "Web link"
                         }, {
                             "type": "postback",
-                            "title": "Image postback",
-                            "payload": "image "+this.dog,
+                            "title": "Send me a picture",
+                            "payload": "image "+this.text,
                         }]
                     },{
-                        "title": "Second generic "+this.dog,
-                        "subtitle": this.dog,
-                        "image_url": "http://loremflickr.com/320/240/"+this.dog,
+                        "title": "Second generic "+this.text,
+                        "subtitle": this.text,
+                        "image_url": "http://loremflickr.com/320/240/"+this.text,
                         "buttons": [{
                             "type": "web_url",
                             "url": this.url,
                             "title": "Web link"
                         }, {
                             "type": "postback",
-                            "title": "Image postback",
-                            "payload": "image "+this.dog,
+                            "title": "Send me a picture",
+                            "payload": "image "+this.text,
                         }]
                     }]
                 }
