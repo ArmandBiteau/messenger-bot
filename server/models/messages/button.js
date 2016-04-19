@@ -6,11 +6,13 @@ class ButtonMessage extends Message {
 
         super(sender);
 
-        this.url = "http://lmgtfy.com/?q=" + text.toLowerCase().replace('button', '').replace(/\s/g, '');
+        this.dog = text.toLowerCase().replace('button', '').replace(/\s/g, '');
+        this.url = "http://lmgtfy.com/?q=" + this.dog;
 
         this.data = {
             "attachment": {
                 "type": "template",
+                "text": this.dog,
                 "payload": {
                     "template_type": "button",
                     "buttons": [{
@@ -20,7 +22,7 @@ class ButtonMessage extends Message {
                     }, {
                         "type": "postback",
                         "title": "Image postback",
-                        "payload": "cat",
+                        "payload": "image cat",
                     }]
                 }
             }

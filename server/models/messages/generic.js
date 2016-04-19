@@ -22,7 +22,7 @@ class GenericMessage extends Message {
                         }, {
                             "type": "postback",
                             "title": "Image postback",
-                            "payload": "dog",
+                            "payload": "image dog",
                         }],
                     }]
                 }
