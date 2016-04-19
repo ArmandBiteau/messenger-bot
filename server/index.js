@@ -7,6 +7,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
+import request from 'request';
+
 import db from './db';
 
 var app = express();
