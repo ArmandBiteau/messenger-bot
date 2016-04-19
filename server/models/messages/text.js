@@ -8,7 +8,7 @@ class TextMessage extends Message{
 
     constructor(sender, text) {
 
-        this.super(sender);
+        super(sender);
 
         this.data = {
             text:text
