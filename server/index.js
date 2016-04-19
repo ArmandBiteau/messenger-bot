@@ -124,7 +124,7 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
 
-    messaging_events = req.body.entry[0].messaging;
+    var messaging_events = req.body.entry[0].messaging;
 
     for (i = 0; i < messaging_events.length; i++) {
 
@@ -133,7 +133,7 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
 
-            text = event.message.text;
+            var text = event.message.text;
 
             if (text === 'Generic') {
 
