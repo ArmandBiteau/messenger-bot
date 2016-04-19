@@ -105,18 +105,17 @@ app.post('/webhook/', function (req, res) {
 
 			var message;
 
-            if (text.includes('generic')) {
+			switch(true) {
+			    case text.includes('generic'):
+			        message = new GenericMessage(sender, text);
+			        break;
+			    case text.includes('image'):
+			        message = new ImageMessage(sender, text);
+			        break;
 
-                message = new GenericMessage(sender, text);
-
-            } else if (text.includes('image')) {
-
-				message = new ImageMessage(sender, text);
-
-			} else {
-
-				message = new TextMessage(sender, "Echo " + text);
-
+			    default:
+			        message = new TextMessage(sender, "Echo " + text);
+					break;
 			}
 
 			message.send();
