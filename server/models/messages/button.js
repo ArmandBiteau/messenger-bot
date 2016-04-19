@@ -22,7 +22,7 @@ class ButtonMessage extends Message {
                     }, {
                         "type": "postback",
                         "title": "Image postback",
-                        "payload": "image cat",
+                        "payload": "image "+this.dog,
                     }]
                 }
             }
