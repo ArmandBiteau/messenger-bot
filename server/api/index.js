@@ -5,6 +5,15 @@ class Wit {
 
     constructor() {
 
+        this.req = request.defaults({
+            baseUrl: process.env.WIT_URL || 'https://api.wit.ai',
+            strictSSL: false,
+            json: true,
+            headers: {
+                'Authorization': 'Bearer ' + WIT_TOKEN
+            }
+        });
+
     }
 
     analyse(data) {
@@ -20,17 +29,29 @@ class Wit {
 
     getDatas(data) {
 
+        console.log('get datas');
+
         return new Promise((resolve, reject) => {
 
-            console.log('get datas');
+            var options = {
+                uri: '/message',
+                method: 'GET',
+                qs: { q: message }
+            };
 
-            resolve(data);
+            this.req(options, makeWitResponseHandler('message', function() {
+
+                resolve(data);
+
+            }));
 
         });
 
     }
 
     process(data) {
+
+        console.log(data);
 
         return new Promise((resolve, reject) => {
 
