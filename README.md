@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-Facebook Messenger bot, with artificial intelligence
-=======
 ##Facebook Messenger bot, with artificial intelligence
->>>>>>> 15606dfee3a4e5b908ecb8aeab2f719e48d05670
 
 [Go to the Facebook page (and ask for test permissions)](https://www.facebook.com/dougthedogbot/)
 
