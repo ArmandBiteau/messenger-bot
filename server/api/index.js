@@ -55,6 +55,9 @@ class Wit {
 
             console.log( JSON.stringify(newdata.wit.outcomes) );
 
+            var intent = newdata.wit.outcomes[0].entities.intent[0].value;
+            newdata.intent = intent;
+
             resolve(newdata);
 
         });

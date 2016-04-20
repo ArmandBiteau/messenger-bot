@@ -15,24 +15,40 @@ class MessageParser {
 
         var message;
 
-		switch(true) {
-		    case data.request.includes('generic'):
-		        message = new GenericMessage(data.sender, data.request);
-		        break;
-		    case data.request.includes('image'):
-		        message = new ImageMessage(data.sender, data.request);
-		        break;
-			case data.request.includes('button'):
-		        message = new ButtonMessage(data.sender, data.request);
-		        break;
-			case data.request.includes('receipt'):
-				message = new ReceiptMessage(data.sender, data.request);
-				break;
+        if (data.intent) {
 
-		    default:
-		        message = new TextMessage(data.sender, "Echo " + data.request);
-				break;
-		}
+            switch(data.intent) {
+    		    case 'hello':
+    		        message = new TextMessage(data.sender, "Hi ! I'm doug the dog bot !");
+    		        break;
+
+    		    default:
+    		        message = new TextMessage(data.sender, "Give me more details..");
+    				break;
+    		}
+
+        } else {
+
+            switch(true) {
+    		    case data.request.includes('generic'):
+    		        message = new GenericMessage(data.sender, data.request);
+    		        break;
+    		    case data.request.includes('image'):
+    		        message = new ImageMessage(data.sender, data.request);
+    		        break;
+    			case data.request.includes('button'):
+    		        message = new ButtonMessage(data.sender, data.request);
+    		        break;
+    			case data.request.includes('receipt'):
+    				message = new ReceiptMessage(data.sender, data.request);
+    				break;
+
+    		    default:
+    		        message = new TextMessage(data.sender, "Default response, " + data.request);
+    				break;
+    		}
+
+        }
 
 		message.send();
 
