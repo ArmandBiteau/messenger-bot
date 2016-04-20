@@ -55,8 +55,11 @@ class Wit {
 
             console.log( JSON.stringify(newdata.wit.outcomes) );
 
-            var intent = newdata.wit.outcomes[0].entities.intent[0].value;
-            newdata.intent = intent;
+            if (newdata.wit.outcomes[0].intent !== "UNKNOWN") {
+
+                newdata.intent = newdata.wit.outcomes[0].entities.intent[0].value;
+
+            }
 
             resolve(newdata);
 
