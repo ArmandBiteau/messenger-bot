@@ -15,6 +15,8 @@ class Wit {
 
             console.log('Analyse done !');
 
+            console.log(data.sender, data.content);
+
             resolve(data);
 
         });

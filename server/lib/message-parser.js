@@ -16,16 +16,16 @@ class MessageParser {
         var message;
 
 		switch(true) {
-		    case text.includes('generic'):
+		    case data.content.includes('generic'):
 		        message = new GenericMessage(data.sender, data.content);
 		        break;
-		    case text.includes('image'):
+		    case data.content.includes('image'):
 		        message = new ImageMessage(data.sender, data.content);
 		        break;
-			case text.includes('button'):
+			case data.content.includes('button'):
 		        message = new ButtonMessage(data.sender, data.content);
 		        break;
-			case text.includes('receipt'):
+			case data.content.includes('receipt'):
 				message = new ReceiptMessage(data.sender, data.content);
 				break;
 

@@ -10,12 +10,6 @@ import bodyParser from 'body-parser';
 import request from 'request';
 import db from './db';
 
-import TextMessage from './models/messages/text';
-import ImageMessage from './models/messages/image';
-import GenericMessage from './models/messages/generic';
-import ButtonMessage from './models/messages/button';
-import ReceiptMessage from './models/messages/receipt';
-
 /*-------------------------------------------------------------------------------*/
 // MESSAGE MANAGER AND WIT API
 /*-------------------------------------------------------------------------------*/
