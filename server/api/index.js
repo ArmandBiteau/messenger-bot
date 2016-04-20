@@ -22,7 +22,7 @@ class Wit {
 
     getDatas(data) {
 
-        console.log('get datas', data.request);
+        console.log('get datas : ' + data.request);
 
         return new Promise((resolve, reject) => {
 
@@ -47,6 +47,8 @@ class Wit {
 
             }).on('response', function(response) {
 
+                console.log(response);
+
                 resolve(data);
 
             });
@@ -56,8 +58,6 @@ class Wit {
     }
 
     process(data) {
-
-        console.log(data);
 
         return new Promise((resolve, reject) => {
 
