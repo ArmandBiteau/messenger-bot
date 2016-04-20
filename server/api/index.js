@@ -22,8 +22,6 @@ class Wit {
 
     getDatas(data) {
 
-        console.log('get datas : ' + data.request);
-
         return new Promise((resolve, reject) => {
 
             request({
@@ -39,13 +37,11 @@ class Wit {
 
             }, function(error, response, body) {
 
-                if (error) {
-                    console.log('Error sending messages: ', error);
-                } else if (response.body.error) {
+                if (response.body.error) {
                     console.log('Error: ', response.body.error);
                 }
 
-                console.log(body);
+                data.wit = body;
 
                 resolve(data);
 
@@ -59,9 +55,7 @@ class Wit {
 
         return new Promise((resolve, reject) => {
 
-            console.log('parse data');
-
-            data.request += ' after process';
+            console.log('NEW DATAS : ', data);
 
             resolve(data);
 
