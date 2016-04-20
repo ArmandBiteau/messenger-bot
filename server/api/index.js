@@ -34,7 +34,7 @@ class Wit {
                 method: 'GET',
                 json: true,
                 headers: {
-                    'Authorization': 'Bearer ' + WIT_TOKEN
+                    'Authorization': 'Bearer ' + WIT_SERV_TOKEN
                 }
 
             }, function(error, response, body) {
