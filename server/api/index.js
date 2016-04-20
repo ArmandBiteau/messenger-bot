@@ -13,7 +13,7 @@ class Wit {
 
         console.log('analyse datas');
 
-        return Promise.all([_this.getDatas(data), _this.process(data)]);
+        return _this.getDatas(data).then(_this.process(data));
 
     }
 
