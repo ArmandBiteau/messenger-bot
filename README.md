@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Facebook Messenger bot, with artificial intelligence
+=======
+##Facebook Messenger bot, with artificial intelligence
+>>>>>>> 15606dfee3a4e5b908ecb8aeab2f719e48d05670
 
 [Go to the Facebook page (and ask for test permissions)](https://www.facebook.com/dougthedogbot/)
 
@@ -17,7 +21,8 @@ Facebook Messenger bot, with artificial intelligence
 ###### hello (or hi/bonjour)
 ###### how is the weather? (or what is the weather?)
 ###### how is the weather in Australia? (or what is the weather in London?)
-###### what time is it?
+###### what time is it? (or give me the time)
+
 
 # Local run
 
