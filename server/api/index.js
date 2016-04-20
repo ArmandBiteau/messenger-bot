@@ -49,13 +49,13 @@ class Wit {
 
     }
 
-    process(newdata) {
+    process(data) {
 
         return new Promise((resolve, reject) => {
 
-            console.log(newdata);
+            console.log(data.outcomes);
 
-            resolve(newdata);
+            resolve(data);
 
         });
 
