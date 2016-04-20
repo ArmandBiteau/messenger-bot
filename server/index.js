@@ -59,17 +59,17 @@ app.post('/webhook/', function(req, res) {
 
 	var data = {
 		sender: event.sender.id,
-		content: ''
+		request: ''
 	};
 
     if (event.message && event.message.text) {
 
-		data.content = event.message.text.toLowerCase();
+		data.request = event.message.text.toLowerCase();
 
-		Wit.analyse(data).then((data) => {
+		Wit.analyse(data).then((answer) => {
 
 			// Answer regarding to the analyse
-			MessageParser.dispatch(data);
+			MessageParser.dispatch(answer);
 
 		});
 
@@ -77,7 +77,7 @@ app.post('/webhook/', function(req, res) {
 
 	if (event.postback) {
 
-		data.content = event.postback.payload.toLowerCase();
+		data.request = event.postback.payload.toLowerCase();
 
 		MessageParser.postback(data);
 

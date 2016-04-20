@@ -11,13 +11,34 @@ class Wit {
 
         return new Promise((resolve, reject) => {
 
-            // transforms
+            var answer = {
+                sender: data.sender,
+                request: data.request,
+                type: ''
+            };
+
+            this.process();
 
             console.log('Analyse done !');
 
-            console.log(data.sender, data.content);
+            resolve(answer);
 
-            resolve(data);
+        });
+
+    }
+
+    process(req) {
+
+        var options = {
+            url: 'https://api.wit.ai/message?q='+req.request,
+            headers: {
+                Authorization: 'Bearer ' + WIT_TOKEN
+            }
+        };
+
+        request(options).on('response', function(response) {
+
+            console.log(response);
 
         });
 

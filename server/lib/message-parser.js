@@ -16,21 +16,21 @@ class MessageParser {
         var message;
 
 		switch(true) {
-		    case data.content.includes('generic'):
-		        message = new GenericMessage(data.sender, data.content);
+		    case data.request.includes('generic'):
+		        message = new GenericMessage(data.sender, data.request);
 		        break;
-		    case data.content.includes('image'):
-		        message = new ImageMessage(data.sender, data.content);
+		    case data.request.includes('image'):
+		        message = new ImageMessage(data.sender, data.request);
 		        break;
-			case data.content.includes('button'):
-		        message = new ButtonMessage(data.sender, data.content);
+			case data.request.includes('button'):
+		        message = new ButtonMessage(data.sender, data.request);
 		        break;
-			case data.content.includes('receipt'):
-				message = new ReceiptMessage(data.sender, data.content);
+			case data.request.includes('receipt'):
+				message = new ReceiptMessage(data.sender, data.request);
 				break;
 
 		    default:
-		        message = new TextMessage(data.sender, "Echo " + data.content);
+		        message = new TextMessage(data.sender, "Echo " + data.request);
 				break;
 		}
 
@@ -40,7 +40,7 @@ class MessageParser {
 
     postback(data) {
 
-        if (data.content === "buy present") {
+        if (data.request === "buy present") {
 
             let recMessage = new ReceiptMessage(data.sender, "Dog food");
             let thanksMessage = new TextMessage(data.sender, "Thanks man !");
@@ -50,7 +50,7 @@ class MessageParser {
 
         } else {
 
-            let newMessage = new ImageMessage(data.sender, data.content);
+            let newMessage = new ImageMessage(data.sender, data.request);
             newMessage.send();
 
         }
