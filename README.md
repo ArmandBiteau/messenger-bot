@@ -5,11 +5,15 @@
 
 # Available messages
 
-###### Hello dog
+##### Default templates
 ###### Image dog
 ###### Generic dog
 ###### Button dog
 ###### Receipt dog
+
+##### Artificial intelligence
+###### hello (or hi/bonjour)
+###### how is the weather? (or what is the weather?)
 
 # Local run
 ```
