@@ -11,6 +11,8 @@ class Wit {
 
         var _this = this;
 
+        console.log('analyse datas');
+
         return Promise.all([_this.getDatas(data), _this.process(data)]);
 
     }

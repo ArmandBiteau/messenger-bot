@@ -68,6 +68,8 @@ app.post('/webhook/', function(req, res) {
 
 		Wit.analyse(data).then((answer) => {
 
+			console.log(answer);
+
 			// Answer regarding to the analyse
 			MessageParser.dispatch(answer);
 
