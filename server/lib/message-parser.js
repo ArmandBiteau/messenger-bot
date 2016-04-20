@@ -29,6 +29,9 @@ class MessageParser {
                     var date = new Date().toGMTString();
     		        message = new TextMessage(data.sender, "The time and date (GMT) is : " + date);
     		        break;
+                case 'joke':
+    		        message = new TextMessage(data.sender, "Haha you're so funny !");
+    		        break;
 
     		    default:
     		        message = new TextMessage(data.sender, "Give me more details..");
