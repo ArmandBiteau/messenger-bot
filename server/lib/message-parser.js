@@ -13,6 +13,8 @@ class MessageParser {
 
     dispatch(data) {
 
+        console.log('Sending message...');
+
         var message;
 
 		switch(true) {
