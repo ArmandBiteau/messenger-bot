@@ -17,33 +17,27 @@ class Wit {
                 postback: false
             };
 
-            for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
+            var event = req.body.entry[0].messaging[0];
 
-                var event = req.body.entry[0].messaging[i];
+            // get sender id
+            data.sender = event.sender.id;
 
-                // get sender id
-                data.sender = event.sender.id;
+            if (event.message && event.message.text) {
 
-                if (event.message && event.message.text) {
-
-                    data.content = event.message.text.toLowerCase();
-
-                }
-
-        		if (event.postback) {
-
-                    data.content = event.postback.payload.toLowerCase();
-                    data.postback = true;
-
-                }
-
-                console.log('Analyse done !');
-
-                resolve(data);
+                data.content = event.message.text.toLowerCase();
 
             }
 
-            reject();
+    		if (event.postback) {
+
+                data.content = event.postback.payload.toLowerCase();
+                data.postback = true;
+
+            }
+
+            console.log('Analyse done !');
+
+            resolve(data);
 
         });
 
