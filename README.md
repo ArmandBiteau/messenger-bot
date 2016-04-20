@@ -14,6 +14,7 @@
 ##### Artificial intelligence
 ###### hello (or hi/bonjour)
 ###### how is the weather? (or what is the weather?)
+###### what time is it? (or give me the time)
 
 # Local run
 
