@@ -11,9 +11,10 @@ class Wit {
 
         var _this = this;
 
-        console.log('analyse datas');
+        console.log('analysing datas..');
 
-        return _this.getDatas(data).then(_this.process(data));
+        return  _this.getDatas(data)
+                .then(_this.process(data));
 
     }
 
@@ -34,6 +35,8 @@ class Wit {
         return new Promise((resolve, reject) => {
 
             console.log('parse data');
+
+            data.request += ' after process';
 
             resolve(data);
 
