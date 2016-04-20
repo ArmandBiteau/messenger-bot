@@ -48,7 +48,7 @@ class MessageParser {
     				break;
 
     		    default:
-    		        message = new TextMessage(data.sender, "Default response, " + data.request);
+    		        message = new TextMessage(data.sender, "Give me more details about " + data.request);
     				break;
     		}
 
