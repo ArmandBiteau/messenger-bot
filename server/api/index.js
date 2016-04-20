@@ -14,7 +14,7 @@ class Wit {
         var _this = this;
 
         return  _this.getDatas(data)
-                .then(_this.process(data));
+                .then(_this.process(newdata));
 
     }
 
@@ -41,8 +41,6 @@ class Wit {
 
                 data.wit = body;
 
-                console.log('GET DATAS : ', data);
-
                 resolve(data);
 
             });
@@ -51,13 +49,13 @@ class Wit {
 
     }
 
-    process(data) {
+    process(newdata) {
 
         return new Promise((resolve, reject) => {
 
-            console.log('PROCESS DATAS : ', data);
+            console.log(newdata);
 
-            resolve(data);
+            resolve(newdata);
 
         });
 
