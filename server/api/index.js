@@ -39,11 +39,13 @@ class Wit {
 
             }, function(error, response, body) {
 
-                console.log('Error sending messages: ', error);
+                if (error) {
+                    console.log('Error sending messages: ', error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                }
 
             }).on('response', function(response) {
-
-                console.log(response);
 
                 resolve(data);
 
