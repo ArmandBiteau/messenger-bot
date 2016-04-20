@@ -58,16 +58,39 @@ app.post('/webhook/', function(req, res) {
 
 	console.log('----- POST -----');
 
-	res.sendStatus(200);
+	for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
-	// analyse messages with Wit.ai
-	Wit.analyse(req).then((data) => {
+        var event = req.body.entry[0].messaging[i];
+		var sender = event.sender.id;
+		var postback = event.postback;
 
-		// Answer regarding to the analyse
-		MessageParser.dispatch(data);
+		var message;
+
+        if (event.message && event.message.text) {
+
+            message = event.message.text.toLowerCase();
+
+        }
+
+		if (postback) {
+
+            message = event.postback.payload.toLowerCase();
+
+        }
+
+		// analyse messages with Wit.ai
+		Wit.analyse(sender, message, postback).then((data) => {
+
+			// Answer regarding to the analyse
+			MessageParser.dispatch(data);
+
+		});
+
+    }
 
 
-	});
+
+    res.sendStatus(200);
 
 });
 

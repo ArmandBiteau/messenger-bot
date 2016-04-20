@@ -7,47 +7,27 @@ class Wit {
 
     }
 
-    analyse(req) {
+    analyse(sender, message, postback) {
 
         return new Promise((resolve, reject) => {
 
-            console.log(req);
-
             var data = {
-                sender: '',
+                sender: sender,
                 content: '',
-                postback: false
+                postback: postback
             };
 
-            for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
+            if (message) {
 
-                var event = req.body.entry[0].messaging[i];
-
-                // get sender id
-                data.sender = event.sender.id;
-
-                if (event.message && event.message.text) {
-
-                    data.content = event.message.text.toLowerCase();
-
-                }
-
-        		if (event.postback) {
-
-                    data.content = event.postback.payload.toLowerCase();
-                    data.postback = true;
-
-                }
-
-                console.log('Analyse done !');
-
-                console.log(data);
-
-                resolve(data);
+                data.content = message;
 
             }
 
-            reject();
+            console.log('Analyse done !');
+
+            console.log(data);
+
+            resolve(data);
 
         });
 
