@@ -13,44 +13,24 @@ class MessageParser {
 
     dispatch(data) {
 
-        // data = {
-        //     sender,
-        //     content,
-        //     postback
-        // }
-
-		if (data.postback) {
-
-            this.sendPostback(data.sender, data.content);
-
-        } else {
-
-            this.sendMessage(data.sender, data.content);
-
-        }
-
-    }
-
-    sendMessage(sender, text) {
-
         var message;
 
 		switch(true) {
 		    case text.includes('generic'):
-		        message = new GenericMessage(sender, text);
+		        message = new GenericMessage(data.sender, data.content);
 		        break;
 		    case text.includes('image'):
-		        message = new ImageMessage(sender, text);
+		        message = new ImageMessage(data.sender, data.content);
 		        break;
 			case text.includes('button'):
-		        message = new ButtonMessage(sender, text);
+		        message = new ButtonMessage(data.sender, data.content);
 		        break;
 			case text.includes('receipt'):
-				message = new ReceiptMessage(sender, text);
+				message = new ReceiptMessage(data.sender, data.content);
 				break;
 
 		    default:
-		        message = new TextMessage(sender, "Echo " + text);
+		        message = new TextMessage(data.sender, "Echo " + data.content);
 				break;
 		}
 
@@ -58,19 +38,19 @@ class MessageParser {
 
     }
 
-    sendPostback(sender, text) {
+    postback(data) {
 
-        if (text === "buy present") {
+        if (data.content === "buy present") {
 
-            let recMessage = new ReceiptMessage(sender, "Dog food");
-            let thanksMessage = new TextMessage(sender, "Thanks man !");
+            let recMessage = new ReceiptMessage(data.sender, "Dog food");
+            let thanksMessage = new TextMessage(data.sender, "Thanks man !");
 
             recMessage.send();
             thanksMessage.send();
 
         } else {
 
-            let newMessage = new ImageMessage(sender, text);
+            let newMessage = new ImageMessage(data.sender, data.content);
             newMessage.send();
 
         }

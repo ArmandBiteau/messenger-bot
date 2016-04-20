@@ -61,44 +61,33 @@ app.get('/webhook/', function(req, res) {
 
 app.post('/webhook/', function(req, res) {
 
-	//for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
+	var event = req.body.entry[0].messaging[0];
 
-		var data = {};
+	var data = {
+		sender: event.sender.id,
+		content: ''
+	};
 
-        var event = req.body.entry[0].messaging[0];
+    if (event.message && event.message.text) {
 
+		data.content = event.message.text.toLowerCase();
 
-		data.sender = event.sender.id;
-		data.postback = event.postback;
+		Wit.analyse(data).then((data) => {
 
+			// Answer regarding to the analyse
+			MessageParser.dispatch(data);
 
-        if (event.message && event.message.text) {
+		});
 
-			data.content = event.message.text.toLowerCase();
+    }
 
-			Wit.analyse(data).then((data) => {
+	if (event.postback) {
 
-				// Answer regarding to the analyse
-				MessageParser.dispatch(data);
+		data.content = event.postback.payload.toLowerCase();
 
-			});
+		MessageParser.postback(data);
 
-        }
-
-		if (event.postback) {
-
-			data.content = event.postback.payload.toLowerCase();
-
-			Wit.analyse(data).then((data) => {
-
-				// Answer regarding to the analyse
-				MessageParser.dispatch(data);
-
-			});
-
-        }
-
-    //}
+    }
 
     res.sendStatus(200);
 
