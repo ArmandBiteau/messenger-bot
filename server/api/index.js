@@ -53,7 +53,7 @@ class Wit {
 
         return new Promise((resolve, reject) => {
 
-            console.log(newdata);
+            console.log(newdata.wit.outcomes);
 
             resolve(newdata);
 
