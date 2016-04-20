@@ -37,12 +37,12 @@ app.use(bodyParser.json({
 	limit : '100kb'
 }));
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
 	res.send('Messenger-bot');
 });
 
 // Facebook verification only
-app.get('/webhook/', function (req, res) {
+app.get('/webhook/', function(req, res) {
 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
         res.send(req.query['hub.challenge']);
     }
@@ -54,15 +54,17 @@ app.get('/webhook/', function (req, res) {
 /* MAGIC HAPPENS HERE
 /*-------------------------------------------------------------------------------*/
 
-app.post('/webhook/', function (req, res) {
+app.post('/webhook/', function(req, res) {
 
 	console.log('----- POST -----');
-	
+
 	// analyse messages with Wit.ai
 	Wit.analyse(req).then((data) => {
 
 		// Answer regarding to the analyse
-		MessageParser.dispatch(data, res);
+		MessageParser.dispatch(data);
+
+		res.sendStatus(200);
 
 	});
 

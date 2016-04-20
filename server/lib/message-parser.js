@@ -11,7 +11,7 @@ class MessageParser {
 
     }
 
-    dispatch(data, res) {
+    dispatch(data) {
 
         // data = {
         //     sender,
@@ -28,8 +28,6 @@ class MessageParser {
             this.sendMessage(data.sender, data.content);
 
         }
-
-        res.sendStatus(200);
 
     }
 
