@@ -58,13 +58,14 @@ app.post('/webhook/', function(req, res) {
 
 	console.log('----- POST -----');
 
+	res.sendStatus(200);
+
 	// analyse messages with Wit.ai
 	Wit.analyse(req).then((data) => {
 
 		// Answer regarding to the analyse
 		MessageParser.dispatch(data);
 
-		res.sendStatus(200);
 
 	});
 
