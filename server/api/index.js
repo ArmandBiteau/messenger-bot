@@ -1,4 +1,6 @@
 
+import request from 'request';
+
 import { WIT_TOKEN, WIT_SERV_TOKEN } from '../lib/config';
 
 class Wit {
