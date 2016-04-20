@@ -11,19 +11,17 @@ class Wit {
 
         var _this = this;
 
+        return new Promise.all([_this.getDatas, _this.process]);
+
+    }
+
+    getDatas(data) {
+
         return new Promise((resolve, reject) => {
 
-            var answer = {
-                sender: data.sender,
-                request: data.request,
-                type: ''
-            };
+            console.log('get datas');
 
-            _this.process(data);
-
-            console.log('Analyse done !');
-
-            resolve(answer);
+            resolve(data);
 
         });
 
@@ -31,25 +29,11 @@ class Wit {
 
     process(data) {
 
-        request({
+        return new Promise((resolve, reject) => {
 
-            url: 'https://api.wit.ai/message',
-            qs: {
-                q: data.request,
-                access_token: WIT_TOKEN
-            },
-            method: 'GET'
-        }, function(error, response, body) {
+            console.log('parse data');
 
-            if (error) {
-                console.log('Error sending messages: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            }
-
-        }).on('response', function(response) {
-
-            console.log(response);
+            resolve(data);
 
         });
 
