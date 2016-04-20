@@ -61,13 +61,11 @@ app.get('/webhook/', function(req, res) {
 
 app.post('/webhook/', function(req, res) {
 
-	console.log('----- POST -----');
-
-	for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
+	//for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
 		var data = {};
 
-        var event = req.body.entry[0].messaging[i];
+        var event = req.body.entry[0].messaging[0];
 
 
 		data.sender = event.sender.id;
@@ -100,7 +98,7 @@ app.post('/webhook/', function(req, res) {
 
         }
 
-    }
+    //}
 
     res.sendStatus(200);
 
