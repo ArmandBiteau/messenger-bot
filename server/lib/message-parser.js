@@ -4,6 +4,8 @@ import ImageMessage from '../models/messages/image';
 import GenericMessage from '../models/messages/generic';
 import ButtonMessage from '../models/messages/button';
 import ReceiptMessage from '../models/messages/receipt';
+import WelcomeMessage from '../models/messages/welcome';
+
 
 class MessageParser {
 
@@ -19,7 +21,7 @@ class MessageParser {
 
             switch(data.intent) {
     		    case 'hello':
-    		        message = new TextMessage(data.sender, "Hi ! I'm doug the dog bot !");
+    		        message = new WelcomeMessage(data.sender, "Hi ! I'm doug the dog bot !");
     		        break;
 
     		    default:
