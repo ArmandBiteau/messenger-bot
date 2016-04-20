@@ -37,15 +37,7 @@ class Wit {
                     'Authorization': 'Bearer ' + WIT_SERV_TOKEN
                 }
 
-            }, function(error, response, body) {
-
-                if (error) {
-                    console.log('Error sending messages: ', error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                }
-
-            }).on('response', function(response) {
+            }).on('success', function(response) {
 
                 console.log(response);
 
