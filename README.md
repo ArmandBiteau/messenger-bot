@@ -1,6 +1,6 @@
 ##Facebook Messenger bot, with artificial intelligence
 
-[Go to the Facebook page (and ask for test permissions)](https://www.facebook.com/dougthedogbot/)
+[Go to the Facebook page (and ask for test permissions)](https://www.facebook.com/dougthedogbot/) (Doug hasn't yet been approved by Facebook, so only known users can test)
 
 
 ### Available messages
