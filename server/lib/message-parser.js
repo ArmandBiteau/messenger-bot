@@ -23,7 +23,11 @@ class MessageParser {
     		        message = new WelcomeMessage(data.sender, "Hi ! I'm doug the dog bot !");
     		        break;
                 case 'weather':
-    		        message = new TextMessage(data.sender, "Look through the window !");
+                    if (data.location) {
+                        message = new TextMessage(data.sender, "You thought I was from "+ data.location+" ?");
+                    } else {
+                        message = new TextMessage(data.sender, "Look through the window !");
+                    }
     		        break;
                 case 'time':
                     var date = new Date().toGMTString();
