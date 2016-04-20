@@ -11,6 +11,8 @@ class Wit {
 
         return new Promise((resolve, reject) => {
 
+            console.log(req);
+
             var data = {
                 sender: '',
                 content: '',
