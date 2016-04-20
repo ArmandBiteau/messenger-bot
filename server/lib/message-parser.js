@@ -6,7 +6,6 @@ import ButtonMessage from '../models/messages/button';
 import ReceiptMessage from '../models/messages/receipt';
 import WelcomeMessage from '../models/messages/welcome';
 
-
 class MessageParser {
 
     constructor() {
@@ -22,6 +21,9 @@ class MessageParser {
             switch(data.intent) {
     		    case 'hello':
     		        message = new WelcomeMessage(data.sender, "Hi ! I'm doug the dog bot !");
+    		        break;
+                case 'weather':
+    		        message = new TextMessage(data.sender, "Look through the window !");
     		        break;
 
     		    default:

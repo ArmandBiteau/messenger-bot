@@ -1,7 +1,7 @@
 
 [Doug the dog bot](https://www.facebook.com/dougthedogbot/)
 
-> Update your PAGE_TOKEN in /server/lib/config-sample.js and save it as config.js
+> Update your TOKENS in /server/lib/config-sample.js and save it as config.js
 
 # Available messages
 
