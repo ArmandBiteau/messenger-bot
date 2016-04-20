@@ -17,7 +17,7 @@ class Wit {
                 type: ''
             };
 
-            this.process(data);
+            //this.process(data);
 
             console.log('Analyse done !');
 
