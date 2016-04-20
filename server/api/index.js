@@ -11,7 +11,7 @@ class Wit {
 
         var _this = this;
 
-        return new Promise.all([_this.getDatas, _this.process]);
+        return Promise.all([_this.getDatas(data), _this.process(data)]);
 
     }
 
