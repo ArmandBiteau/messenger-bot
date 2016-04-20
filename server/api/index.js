@@ -17,7 +17,7 @@ class Wit {
                 type: ''
             };
 
-            this.process();
+            this.process(data);
 
             console.log('Analyse done !');
 
@@ -28,6 +28,8 @@ class Wit {
     }
 
     process(req) {
+
+        console.log('processing..');
 
         var options = {
             url: 'https://api.wit.ai/message?q='+req.request,
