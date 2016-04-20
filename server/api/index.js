@@ -7,9 +7,15 @@ class Wit {
 
     }
 
-    echo() {
+    analyse() {
 
-        console.log('Api wit works !');
+        return new Promise((resolve, reject) => {
+
+            console.log('Wit analyse works !');
+
+            resolve();
+
+        });
 
     }
 

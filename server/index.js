@@ -1,5 +1,7 @@
 
-import { PAGE_TOKEN } from './lib/config';
+/*-------------------------------------------------------------------------------*/
+/* MODULES
+/*-------------------------------------------------------------------------------*/
 
 import http from 'http';
 import express from 'express';
@@ -8,12 +10,20 @@ import bodyParser from 'body-parser';
 import request from 'request';
 import db from './db';
 
+
+/*-------------------------------------------------------------------------------*/
+/* MESSAGE MANAGER AND WIT API
+/*-------------------------------------------------------------------------------*/
+
 import Parser from './lib/message-parser';
 var MessageParser = new Parser();
 
 import Api from './api';
 var Wit = new Api();
 
+/*-------------------------------------------------------------------------------*/
+/* APPLICATION
+/*-------------------------------------------------------------------------------*/
 
 var app = express();
 app.server = http.createServer(app);
@@ -40,7 +50,9 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
 
-	Wit.echo();
+	Wit.analyse().then( () => {
+		console.log('then Wit worked too !');
+	});
 
     MessageParser.dispatch(req, res);
 
