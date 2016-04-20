@@ -43,6 +43,8 @@ class Wit {
             //
             // }
 
+            console.log(data);
+
             resolve(data);
 
         });
