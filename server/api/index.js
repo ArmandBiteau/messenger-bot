@@ -14,7 +14,9 @@ class Wit {
         var _this = this;
 
         return  _this.getDatas(data)
-                .then(_this.process(newdata));
+                .then((newdata) => {
+                    _this.process(newdata);
+                });
 
     }
 
