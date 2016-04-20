@@ -66,6 +66,7 @@ app.post('/webhook/', function(req, res) {
 
 		data.request = event.message.text.toLowerCase();
 
+		// Analyse the request with our artificial intelligence
 		Wit.analyse(data).then((answer) => {
 
 			// Answer regarding to the analyse
