@@ -7,25 +7,13 @@ class Wit {
 
     }
 
-    analyse(sender, message, postback) {
+    analyse(data) {
 
         return new Promise((resolve, reject) => {
 
-            var data = {
-                sender: sender,
-                content: '',
-                postback: postback
-            };
-
-            if (message) {
-
-                data.content = message;
-
-            }
+            // transforms
 
             console.log('Analyse done !');
-
-            console.log(data);
 
             resolve(data);
 
