@@ -25,6 +25,10 @@ class MessageParser {
                 case 'weather':
     		        message = new TextMessage(data.sender, "Look through the window !");
     		        break;
+                case 'time':
+                    var date = new Date().toGMTString();
+    		        message = new TextMessage(data.sender, "The time and date (GMT) is : " + date);
+    		        break;
 
     		    default:
     		        message = new TextMessage(data.sender, "Give me more details..");
