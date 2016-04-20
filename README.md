@@ -12,8 +12,12 @@ Facebook Messenger bot, with artificial intelligence
 ###### Receipt dog
 
 ##### Artificial intelligence
+
+###### lol (or mdr/haha)
 ###### hello (or hi/bonjour)
 ###### how is the weather? (or what is the weather?)
+###### how is the weather in Australia? (or what is the weather in London?)
+###### what time is it?
 
 # Local run
 
