@@ -92,64 +92,32 @@ app.post('/webhook/', function(req, res) {
 	// 	});
 	//
     // }
-	//
-    // res.sendStatus(200);
 
 
 	for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
+		var data = {};
+
         var event = req.body.entry[0].messaging[i];
-		var sender = event.sender.id;
+
+
+		data.sender = event.sender.id;
+		data.postback = event.postback;
+
 
         if (event.message && event.message.text) {
 
-            var text = event.message.text.toLowerCase();
-			var message;
-
-			switch(true) {
-			    case text.includes('generic'):
-			        message = new GenericMessage(sender, text);
-			        break;
-			    case text.includes('image'):
-			        message = new ImageMessage(sender, text);
-			        break;
-				case text.includes('button'):
-			        message = new ButtonMessage(sender, text);
-			        break;
-				case text.includes('receipt'):
-					message = new ReceiptMessage(sender, text);
-					break;
-
-			    default:
-			        message = new TextMessage(sender, "Echo " + text);
-					break;
-			}
-
-			message.send();
+			data.content = event.message.text.toLowerCase();
 
         }
 
 		if (event.postback) {
 
-            let text = event.postback.payload;
-
-			if (text === "buy present") {
-
-				let recMessage = new ReceiptMessage(sender, "Dog food");
-				let thanksMessage = new TextMessage(sender, "Thanks man !");
-
-				recMessage.send();
-				thanksMessage.send();
-
-			} else {
-
-				let newMessage = new ImageMessage(sender, text);
-				newMessage.send();
-
-			}
-
+			data.content = event.postback.payload.toLowerCase();
 
         }
+
+		MessageParser.dispatch(data);
 
     }
 
