@@ -1,9 +1,9 @@
+## Doug the dog bot - Facebook Messenger bot, with artificial intelligence
 
-[Doug the dog bot](https://www.facebook.com/dougthedogbot/)
+[Go to the Facebook page (and ask for test permissions)](https://www.facebook.com/dougthedogbot/)
 
-> Update your TOKENS in /server/lib/config-sample.js and save it as config.js
 
-# Available messages
+### Available messages
 
 ##### Default templates
 ###### Image dog
@@ -16,6 +16,9 @@
 ###### how is the weather? (or what is the weather?)
 
 # Local run
+
+> Update your TOKENS in /server/lib/config-sample.js and save it as config.js
+
 ```
 npm install
 ```
