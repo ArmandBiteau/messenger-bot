@@ -58,7 +58,12 @@ class Wit {
             if (newdata.wit.outcomes[0].intent !== "UNKNOWN" && newdata.wit.outcomes[0].confidence >= 0.5) {
 
                 newdata.intent = newdata.wit.outcomes[0].entities.intent[0].value;
-                newdata.location = newdata.wit.outcomes[0].entities.location[0].value;
+
+                if (newdata.wit.outcomes[0].entities.location) {
+
+                    newdata.location = newdata.wit.outcomes[0].entities.location[0].value;
+
+                }
 
             }
 
