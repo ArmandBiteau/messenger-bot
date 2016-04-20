@@ -9,6 +9,8 @@ class Wit {
 
     analyse(data) {
 
+        var _this = this;
+
         return new Promise((resolve, reject) => {
 
             var answer = {
@@ -17,7 +19,7 @@ class Wit {
                 type: ''
             };
 
-            //this.process(data);
+            _this.process(data);
 
             console.log('Analyse done !');
 
@@ -27,24 +29,27 @@ class Wit {
 
     }
 
-    process(req) {
+    process(data) {
 
-        console.log('processing..');
+        request({
 
-        var options = {
-            url: 'https://api.wit.ai/message?q='+req.request,
-            headers: {
-                Authorization: 'Bearer ' + WIT_SERV_TOKEN
+            url: 'https://api.wit.ai/message',
+            qs: {
+                q: data.request,
+                access_token: WIT_TOKEN
+            },
+            method: 'GET'
+        }, function(error, response, body) {
+
+            if (error) {
+                console.log('Error sending messages: ', error);
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error);
             }
-        };
 
-        request(options).on('response', function(response) {
+        }).on('response', function(response) {
 
             console.log(response);
-
-        }).on('error', function(err) {
-
-            console.log(err);
 
         });
 
