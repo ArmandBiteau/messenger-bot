@@ -1,5 +1,5 @@
 
-import { WIT_TOKEN } from '../lib/config';
+import { WIT_TOKEN, WIT_SERV_TOKEN } from '../lib/config';
 
 class Wit {
 
@@ -34,13 +34,17 @@ class Wit {
         var options = {
             url: 'https://api.wit.ai/message?q='+req.request,
             headers: {
-                Authorization: 'Bearer ' + WIT_TOKEN
+                Authorization: 'Bearer ' + WIT_SERV_TOKEN
             }
         };
 
         request(options).on('response', function(response) {
 
             console.log(response);
+
+        }).on('error', function(err) {
+
+            console.log(err);
 
         });
 

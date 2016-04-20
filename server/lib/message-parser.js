@@ -15,6 +15,8 @@ class MessageParser {
 
         var message;
 
+        console.log(data);
+
 		switch(true) {
 		    case data.request.includes('generic'):
 		        message = new GenericMessage(data.sender, data.request);
