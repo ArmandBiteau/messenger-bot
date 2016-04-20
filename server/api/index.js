@@ -12,40 +12,40 @@ class Wit {
         return new Promise((resolve, reject) => {
 
             var data = {
-                sender: req.body.entry[0].messaging[0].sender.id,
-                content: 'test',
+                sender: '',
+                content: '',
                 postback: false
             };
 
-            // for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
-            //
-            //     var event = req.body.entry[0].messaging[i];
-            //
-            //     // get sender id
-            //     data.sender = event.sender.id;
-            //
-            //     if (event.message && event.message.text) {
-            //
-            //         data.content = event.message.text.toLowerCase();
-            //
-            //     }
-            //
-        	// 	if (event.postback) {
-            //
-            //         data.content = event.postback.payload.toLowerCase();
-            //         data.postback = true;
-            //
-            //     }
-            //
-            //     console.log('Analyse done !');
-            //
-            //     resolve(data);
-            //
-            // }
+            for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
-            console.log(data);
+                var event = req.body.entry[0].messaging[i];
 
-            resolve(data);
+                // get sender id
+                data.sender = event.sender.id;
+
+                if (event.message && event.message.text) {
+
+                    data.content = event.message.text.toLowerCase();
+
+                }
+
+        		if (event.postback) {
+
+                    data.content = event.postback.payload.toLowerCase();
+                    data.postback = true;
+
+                }
+
+                console.log('Analyse done !');
+
+                console.log(data);
+
+                resolve(data);
+
+            }
+
+            reject();
 
         });
 
