@@ -14,6 +14,9 @@ import GenericMessage from './models/messages/generic';
 import ButtonMessage from './models/messages/button';
 import ReceiptMessage from './models/messages/receipt';
 
+import Api from './api';
+var Wit = new Api();
+
 var app = express();
 app.server = http.createServer(app);
 
@@ -38,6 +41,8 @@ app.get('/webhook/', function (req, res) {
 });
 
 app.post('/webhook/', function (req, res) {
+
+	Wit.echo();
 
     for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
 
