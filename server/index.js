@@ -109,15 +109,19 @@ app.post('/webhook/', function(req, res) {
 
 			data.content = event.message.text.toLowerCase();
 
+			MessageParser.dispatch(data);
+
         }
 
 		if (event.postback) {
 
 			data.content = event.postback.payload.toLowerCase();
 
+			MessageParser.dispatch(data);
+
         }
 
-		MessageParser.dispatch(data);
+
 
     }
 
