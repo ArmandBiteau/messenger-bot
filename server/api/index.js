@@ -55,7 +55,7 @@ class Wit {
 
             console.log( JSON.stringify(newdata.wit.outcomes) );
 
-            if (newdata.wit.outcomes[0].intent !== "UNKNOWN") {
+            if (newdata.wit.outcomes[0].intent !== "UNKNOWN" && newdata.wit.outcomes[0].confidence >= 0.5) {
 
                 newdata.intent = newdata.wit.outcomes[0].entities.intent[0].value;
 

@@ -1,5 +1,5 @@
 export const PAGE_TOKEN = '';
 
-export const WIT_TOKEN = '';
+export const WIT_TOKEN = '57173e9d-d806-4208-915d-cfd8e3ecc849';
 
-export const WIT_SERV_TOKEN = '';
+export const WIT_SERV_TOKEN = 'L46TIOT5Z42C5ZLJUL5IB2SQAVD2NAO6';
