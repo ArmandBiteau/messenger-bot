@@ -7,15 +7,6 @@ class Wit {
 
     constructor() {
 
-        this.req = request.defaults({
-            baseUrl: process.env.WIT_URL || 'https://api.wit.ai',
-            strictSSL: false,
-            json: true,
-            headers: {
-                'Authorization': 'Bearer ' + WIT_TOKEN
-            }
-        });
-
     }
 
     analyse(data) {
@@ -31,21 +22,32 @@ class Wit {
 
     getDatas(data) {
 
-        console.log('get datas');
+        console.log('get datas', data.request);
 
         return new Promise((resolve, reject) => {
 
-            var options = {
-                uri: '/message',
+            request({
+                url: 'https://api.wit.ai/message',
+                qs: {
+                    q: data.request
+                },
                 method: 'GET',
-                qs: { q: message }
-            };
+                json: true,
+                headers: {
+                    'Authorization': 'Bearer ' + WIT_TOKEN
+                }
 
-            this.req(options, makeWitResponseHandler('message', function() {
+            }, function(error, response, body) {
+
+                console.log('Error sending messages: ', error);
+
+            }).on('response', function(response) {
+
+                console.log(response);
 
                 resolve(data);
 
-            }));
+            });
 
         });
 
