@@ -21,8 +21,9 @@ var MessageParser = new Parser();
 import Api from './api';
 var Wit = new Api();
 
+
 /*-------------------------------------------------------------------------------*/
-/* APPLICATION
+/* ROUTES
 /*-------------------------------------------------------------------------------*/
 
 var app = express();
@@ -48,13 +49,20 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong token');
 });
 
+
+/*-------------------------------------------------------------------------------*/
+/* MAGIC HAPPENS HERE
+/*-------------------------------------------------------------------------------*/
+
 app.post('/webhook/', function (req, res) {
 
-	Wit.analyse().then( () => {
-		console.log('then Wit worked too !');
-	});
+	// analyse messages with Wit.ai
+	Wit.analyse(req).then((data) => {
 
-    MessageParser.dispatch(req, res);
+		// Answer regarding to the analyse
+		MessageParser.dispatch(data, res);
+
+	});
 
 });
 

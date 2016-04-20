@@ -11,66 +11,71 @@ class MessageParser {
 
     }
 
-    dispatch(req, res) {
+    dispatch(data, res) {
 
-        for (var i = 0; i < req.body.entry[0].messaging.length; i++) {
+        // data = {
+        //     sender,
+        //     content,
+        //     postback
+        // }
 
-            var event = req.body.entry[0].messaging[i];
-    		var sender = event.sender.id;
+		if (data.postback) {
 
-            if (event.message && event.message.text) {
+            this.sendPostback(data.sender, data.content);
 
-                var text = event.message.text.toLowerCase();
-    			var message;
+        } else {
 
-    			switch(true) {
-    			    case text.includes('generic'):
-    			        message = new GenericMessage(sender, text);
-    			        break;
-    			    case text.includes('image'):
-    			        message = new ImageMessage(sender, text);
-    			        break;
-    				case text.includes('button'):
-    			        message = new ButtonMessage(sender, text);
-    			        break;
-    				case text.includes('receipt'):
-    					message = new ReceiptMessage(sender, text);
-    					break;
-
-    			    default:
-    			        message = new TextMessage(sender, "Echo " + text);
-    					break;
-    			}
-
-    			message.send();
-
-            }
-
-    		if (event.postback) {
-
-                let text = event.postback.payload;
-
-    			if (text === "buy present") {
-
-    				let recMessage = new ReceiptMessage(sender, "Dog food");
-    				let thanksMessage = new TextMessage(sender, "Thanks man !");
-
-    				recMessage.send();
-    				thanksMessage.send();
-
-    			} else {
-
-    				let newMessage = new ImageMessage(sender, text);
-    				newMessage.send();
-
-    			}
-
-
-            }
+            this.sendMessage(data.sender, data.content);
 
         }
 
         res.sendStatus(200);
+
+    }
+
+    sendMessage(sender, text) {
+
+        var message;
+
+		switch(true) {
+		    case text.includes('generic'):
+		        message = new GenericMessage(sender, text);
+		        break;
+		    case text.includes('image'):
+		        message = new ImageMessage(sender, text);
+		        break;
+			case text.includes('button'):
+		        message = new ButtonMessage(sender, text);
+		        break;
+			case text.includes('receipt'):
+				message = new ReceiptMessage(sender, text);
+				break;
+
+		    default:
+		        message = new TextMessage(sender, "Echo " + text);
+				break;
+		}
+
+		message.send();
+
+    }
+
+    sendPostback(sender, text) {
+
+        if (text === "buy present") {
+
+            let recMessage = new ReceiptMessage(sender, "Dog food");
+            let thanksMessage = new TextMessage(sender, "Thanks man !");
+
+            recMessage.send();
+            thanksMessage.send();
+
+        } else {
+
+            let newMessage = new ImageMessage(sender, text);
+            newMessage.send();
+
+        }
 
     }
 
